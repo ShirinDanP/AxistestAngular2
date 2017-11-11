@@ -22,8 +22,8 @@ export class MovieServiceService {
   }
 
   getMovie(index: number): Observable<MovieData> {
-    return this.getMovies().map((products: MovieData[]) =>
-      products.results.find((p, i) => i === index)
+    return this.getMovies().map((movies: MovieData[]) =>
+    (<any>movies).results.find((p, i) => i === index)
     );
   }
 

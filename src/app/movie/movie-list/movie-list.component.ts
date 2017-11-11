@@ -20,7 +20,7 @@ export class MovieListComponent implements OnInit {
   }
   set listFilter(value: string) {
     this._listFilter = value;
-    this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.movies.results;
+    this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : (<any>this).movies.results;
   }
 
   constructor(private _movieService: MovieServiceService) {}
@@ -28,7 +28,7 @@ export class MovieListComponent implements OnInit {
   ngOnInit(): void {
     this._movieService.getMovies().subscribe(movies => {
       this.movies = movies;
-      this.filteredProducts = this.movies.results;
+      this.filteredProducts = (<any>this).movies.results;
     }, error => (this.errorMessage = <any>error));
   }
   
@@ -38,7 +38,7 @@ export class MovieListComponent implements OnInit {
 
   performFilter(filterBy: string): MovieData[] {
     filterBy = filterBy.toLocaleLowerCase();
-    return this.movies.results.filter(
+    return (<any>this).movies.results.filter(
       movie => movie.display_title.toLocaleLowerCase().indexOf(filterBy) !== -1
     );
   }
