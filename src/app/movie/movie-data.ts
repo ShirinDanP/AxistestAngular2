@@ -1,9 +1,10 @@
 export interface MovieData {
+    constructor(){}
     status: string;
     copyright: string;
     has_more: boolean;
     num_results: number;
-    results: Array<Object>;
+    results: Object[];
 }
 
 export interface ResultsData {
