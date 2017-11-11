@@ -9,23 +9,37 @@ import { MovieData } from '../movie-data';
   encapsulation: ViewEncapsulation.None
 })
 export class MovieListComponent implements OnInit {
-pageTitle: 'Movie List';
-showImage: boolean = true;
-movies: MovieData[] = [];
-errorMessage: string;
-listFilter: '';
+  showImage: boolean = true;
+  movies: MovieData[] = [];
+  filteredProducts: MovieData[];
+  errorMessage: string;
 
-  constructor(private _movieService: MovieServiceService) { }
+  _listFilter: string;
+  get listFilter(): string {
+    return this._listFilter;
+  }
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.movies.results;
+  }
+
+  constructor(private _movieService: MovieServiceService) {}
 
   ngOnInit(): void {
-  this._movieService.getMovies()
-  .subscribe(movies => {
-   this.movies = movies;
-  },
-  error => this.errorMessage = <any>error);
+    this._movieService.getMovies().subscribe(movies => {
+      this.movies = movies;
+      this.filteredProducts = this.movies.results;
+    }, error => (this.errorMessage = <any>error));
   }
+  
   toggleImage(): void {
     this.showImage = !this.showImage;
-}
+  }
 
+  performFilter(filterBy: string): MovieData[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.movies.results.filter(
+      movie => movie.display_title.toLocaleLowerCase().indexOf(filterBy) !== -1
+    );
+  }
 }

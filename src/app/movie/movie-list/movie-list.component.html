@@ -1,63 +1,60 @@
 <div class='panel panel-primary'>
-        <div class='panel-heading'>
-            {{pageTitle}}
+    <div class='panel-body'>
+
+        <div class='row'>
+            <div class='col-md-2'>
+                <h4>Filter by:</h4>
+            </div>
+            <div class='col-md-4'>
+                <input type='text' [(ngModel)]='listFilter' />
+            </div>
         </div>
-        <div class='panel-body'>
-            <div class='row'>
-                <div class='col-md-2'>Filter by:</div>
-                <div class='col-md-4'>
-                    <input type='text' [(ngModel)]='listFilter' />
-                </div>
-            </div>
-            <div class='row'>
-                <div class='col-md-6'>
-                    <h3>Filtered by: {{listFilter}} </h3>
-                </div>
-            </div>
-            <div class='table-responsive'>
-                <table class='table'
-                        *ngIf='movies'>
-                    <thead>
-                        <tr>
-                            <th>
-                                <button class='btn btn-primary'
-                                (click)='toggleImage()'>
+
+        <div class='table-responsive'>
+            <table class='table' *ngIf='movies'>
+
+                <thead>
+                    <tr>
+                        <th>
+                            <button class='btn btn-primary' (click)='toggleImage()'>
                                 {{showImage ? 'Hide' : 'Show'}} Image
-                                </button>
-                            </th>
-                            <th>Movie Name</th>
-                            <th>Head Line</th>
-                            <th>Publication Date</th>
-                            <th>ByLine</th>
-                            <th>Opening Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor='let movie of (movies.results|slice:0:5); let i = index'>
-                            <td>
-                                <img *ngIf='showImage'
-                                    [src]='movie.multimedia.src'
-                                    [title]='movie.display_title'
-                                    [style.width.px]='movie.multimedia.width'
-                                    [style.height.px]='movie.multimedia.height' />
-                            </td>
-                            <td>
-                                <a [routerLink]="['/moviesList', i]">
-                                    {{ movie.display_title }}
-                                </a>
-                            </td>
-                            <td>{{ movie.headline}}</td>
-                            <td>{{  movie.publication_date }}</td>
-                            <td>{{  movie.byline }}</td>
-                            <td>
-                          {{i}}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                            </button>
+                        </th>
+                        <th>Movie Name</th>
+                        <th>Head Line</th>
+                        <th>Publication Date</th>
+                        <th>ByLine</th>
+                        <th>Number</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor='let movie of (filteredProducts|slice:0:6); let i = index'>
+                        <td>
+                            <img *ngIf='showImage' 
+                            [src]='movie.multimedia.src'
+                            [title]='movie.display_title' 
+                            [style.width.px]='movie.multimedia.width'
+                            [style.height.px]='movie.multimedia.height' />
+                        </td>
+                        <td>
+                            <a [routerLink]="['/moviesList', i]">
+                                {{ movie.display_title }}
+                            </a>
+                        </td>
+                        <td>{{ movie.headline}}</td>
+                        <td>{{ movie.publication_date }}</td>
+                        <td>{{ movie.byline }}</td>
+                        <td>
+                            {{i+1}}
+                        </td>
+                    </tr>
+                </tbody>
+                
+            </table>
         </div>
     </div>
-    <div *ngIf='errorMessage' class='alert alert-danger'>
-        Error: {{ errorMessage }}
-    </div>
+</div>
+<div *ngIf='errorMessage' class='alert alert-danger'>
+    Error: {{ errorMessage }}
+</div>

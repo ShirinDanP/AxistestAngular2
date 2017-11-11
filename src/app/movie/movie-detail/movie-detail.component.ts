@@ -16,17 +16,17 @@ pageTitle: string = 'Movie Short Summary';
 
   constructor(private _service: MovieServiceService,
     private _route: ActivatedRoute,
-  private _router: Router) { }
+    private _router: Router) { }
 
   ngOnInit() {
     const param = this._route.snapshot.paramMap.get('id');
     if (param) {
      const id = +param;
-      this.getProduct(id);
+     this.getMovie(id);
     }
   }
-  getProduct(id: number) {
-    this._service.getProduct(id).subscribe(
+  getMovie(id: number) {
+    this._service.getMovie(id).subscribe(
       product => this.movie = product,
       error => this.errorMessage = <any>error);
   }
