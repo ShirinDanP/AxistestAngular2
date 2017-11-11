@@ -62,7 +62,7 @@
     padding: 20px;
     margin-top:20px;
     color:#ffffff;
-    background-color: #b6b1af;
+    background-color: rgb(81, 72, 69);
     text-align: center;
   }
   @media (max-width: 768px) {

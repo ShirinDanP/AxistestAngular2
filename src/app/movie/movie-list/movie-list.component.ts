@@ -10,8 +10,8 @@ import { MovieData } from '../movie-data';
 })
 export class MovieListComponent implements OnInit {
 pageTitle: 'Movie List';
-showImage: boolean = false;
-movies: any;
+showImage: boolean = true;
+movies: MovieData[] = [];
 errorMessage: string;
 listFilter: '';
 

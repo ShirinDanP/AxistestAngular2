@@ -13,7 +13,7 @@ import { MovieDetailComponent } from './movie-detail/movie-detail.component';
     FormsModule,
     RouterModule.forChild([
       { path: 'moviesList', component: MovieListComponent },
-      { path: 'moviesList/:id', component: MovieDetailComponent }
+      { path: 'moviesList/:title', component: MovieDetailComponent }
   ]),
   ],
   declarations: [
