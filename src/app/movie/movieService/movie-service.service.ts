@@ -17,10 +17,15 @@ export class MovieServiceService {
 
    getMovies(): Observable<MovieData[]> {
      return this._http.get<MovieData[]>(this.API_URL + '?api-key=' + this.API_KEY)
-     .do(data => console.log('All: ' + JSON.stringify(data)))
+     .do(data => JSON.stringify(data))
      .catch(this.handleError);
    }
 
+   getProduct(index: number): Observable<MovieData> {
+    return this.getMovies()
+     .map((products: MovieData[]) => products.results.find((p, i) => i === index));
+
+}
 
    private handleError(err: HttpErrorResponse) {
     let errorMessage = '';

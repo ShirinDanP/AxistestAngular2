@@ -1,3 +1,40 @@
-<p>
-  movie-detail works!
-</p>
+
+<div class='panel panel-primary' *ngIf='movie'>
+    <div class='panel-heading'>
+        {{pageTitle + ': ' + movie.display_title}}
+    </div>
+
+    <div class='panel-body'>
+        <div class='row'>
+            <div class='col-md-6'>
+                <div class='row'>
+                    <div class='col-md-3'>Name:</div>
+                    <div class='col-md-6'>{{movie.display_title}}</div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-3'>Short Summary:</div>
+                    <div class='col-md-6'>{{movie.summary_short| lowercase }}</div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-3'>Suggested Link to Read:</div>
+                    <div class='col-md-6'>{{movie.suggested_link_text}}</div>
+                </div>
+                </div>
+            </div>
+
+            <div class='col-md-9'>
+                <img class='center-block img-responsive' 
+                [style.width.px]='200' 
+                [style.margin.px]='2' 
+                [src]='movie.multimedia.src'
+                [title]='movie.display_title'>
+            </div>
+        </div>
+        <div>
+            <a class='btn btn-primary' (click)='onBack()' style='width:80px'>
+                <i class='glyphicon glyphicon-chevron-left'></i> Back
+            </a>
+        </div>
+    </div>
+ 
+

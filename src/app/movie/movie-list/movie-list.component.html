@@ -33,7 +33,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor='let movie of (movies.results|slice:0:5);'>
+                        <tr *ngFor='let movie of (movies.results|slice:0:5); let i = index'>
                             <td>
                                 <img *ngIf='showImage'
                                     [src]='movie.multimedia.src'
@@ -42,7 +42,7 @@
                                     [style.height.px]='movie.multimedia.height' />
                             </td>
                             <td>
-                                <a [routerLink]="['/moviesList', movie.display_title]">
+                                <a [routerLink]="['/moviesList', i]">
                                     {{ movie.display_title }}
                                 </a>
                             </td>
@@ -50,7 +50,7 @@
                             <td>{{  movie.publication_date }}</td>
                             <td>{{  movie.byline }}</td>
                             <td>
-                          {{movie.opening_date}}
+                          {{i}}
                             </td>
                         </tr>
                     </tbody>
