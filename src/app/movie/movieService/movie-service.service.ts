@@ -17,13 +17,12 @@ export class MovieServiceService {
   getMovies(): Observable<MovieData[]> {
     return this._http
       .get<MovieData[]>(this.API_URL + '?api-key=' + this.API_KEY)
-      .do(data => JSON.stringify(data))
       .catch(this.handleError);
   }
 
   getMovie(index: number): Observable<MovieData> {
     return this.getMovies().map((movies: MovieData[]) =>
-    (<any>movies).results.find((p, i) => i === index)
+    movies['results'].find((p, i) => i === index)
     );
   }
 

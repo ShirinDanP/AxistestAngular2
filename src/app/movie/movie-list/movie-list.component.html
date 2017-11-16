@@ -1,12 +1,16 @@
-<div class='panel panel-primary'>
-    <div class='panel-body'>
-
+<div class='card card-primary'>
+    <div class='card-body'>
         <div class='row'>
             <div class='col-md-2'>
                 <h4>Filter by:</h4>
             </div>
             <div class='col-md-4'>
                 <input type='text' [(ngModel)]='listFilter' />
+            </div>
+            <div class='col-md-3 button1'>
+                    <a class='btn btn-primary' (click)='addForm()'>
+                            Add new data 
+                    </a>
             </div>
         </div>
 
